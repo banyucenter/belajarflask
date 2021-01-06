@@ -14,7 +14,10 @@ def dosens():
         return DosenController.save()
 
 
-@app.route('/dosen/<id>', methods=['GET'])
+@app.route('/dosen/<id>', methods=['GET', 'PUT'])
 def dosensDetail(id):
-    return DosenController.detail(id)
+    if request.method == 'GET':
+        return DosenController.detail(id)
+    else:
+        return DosenController.ubah(id)
 
