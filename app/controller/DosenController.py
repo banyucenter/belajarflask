@@ -130,6 +130,20 @@ def ubah(id):
     except Exception as e:
         print(e)
 
+#hapus
+def hapus(id):
+    try:
+        dosen = Dosen.query.filter_by(id=id).first()
+        if not dosen:
+            return response.badRequest([], 'Data Dosen Kosong...')
+        
+        db.session.delete(dosen)
+        db.session.commit()
+
+        return response.success('', 'Berhasil menghapus data!')
+    except Exception as e:
+        print(e)
+
 
 
 
