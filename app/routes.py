@@ -14,9 +14,9 @@ def dosens():
     else:
         return DosenController.save()
 
-@app.route('/createadmin', methods=['POST'])
-def admins():
-    return UserController.buatAdmin()
+# @app.route('/createadmin', methods=['POST'])
+# def admins():
+#     return UserController.buatAdmin()
 
 @app.route('/dosen/<id>', methods=['GET','PUT','DELETE'])
 def dosensDetail(id):
@@ -26,5 +26,9 @@ def dosensDetail(id):
         return DosenController.ubah(id)
     elif request.method == 'DELETE':
         return DosenController.hapus(id)
+
+@app.route('/login', methods=['POST'])
+def logins():
+    return UserController.login()
 
 

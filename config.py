@@ -8,6 +8,8 @@ class Config(object):
     USERNAME = str(os.environ.get("DB_USERNAME"))
     PASSWORD = str(os.environ.get("DB_PASSWORD"))
 
+    JWT_SECRET_KEY = str(os.environ.get("JWT_SECRET"))
+
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + USERNAME + ':' + PASSWORD + '@' + HOST + '/' + DATABASE
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_RECORD_QUERIES = True
