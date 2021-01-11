@@ -1,5 +1,6 @@
 from app import app
 from app.controller import DosenController
+from app.controller import UserController
 from flask import request
 
 @app.route('/')
@@ -13,6 +14,9 @@ def dosens():
     else:
         return DosenController.save()
 
+@app.route('/createadmin', methods=['POST'])
+def admins():
+    return UserController.buatAdmin()
 
 @app.route('/dosen/<id>', methods=['GET','PUT','DELETE'])
 def dosensDetail(id):

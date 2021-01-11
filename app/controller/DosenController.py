@@ -60,8 +60,6 @@ def singleDetailMahasiswa(dosen, mahasiswa):
 
     return data
 
-
-
 def singleMahasiswa(mahasiswa):
     data = {
         'id': mahasiswa.id,
