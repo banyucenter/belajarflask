@@ -7,23 +7,23 @@ from flask import request
 from flask_jwt_extended import *
 import datetime
 
-# def buatAdmin():
-#     try:
-#         name = request.form.get('name')
-#         email = request.form.get('email')
-#         password = request.form.get('password')
-#         level = 1
+def buatAdmin():
+    try:
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        level = 1
 
-#         users = User(name=name, email=email, level=level)
-#         users.setPassword(password)
-#         db.session.add(users)
-#         db.session.commit()
+        users = User(name=name, email=email, level=level)
+        users.setPassword(password)
+        db.session.add(users)
+        db.session.commit()
 
-#         return response.success('', 'Sukses Menambahkan Data Admin!')
-#     except Exception as e:
-#         print(e)
+        return response.success('', 'Sukses Menambahkan Data Admin!')
+    except Exception as e:
+        print(e)
 
-#fungsi single
+
 def singleObject(data):
     data = {
         'id' : data.id,
@@ -34,7 +34,7 @@ def singleObject(data):
 
     return data
 
-#fungsi login
+
 def login():
     try:
         email = request.form.get('email')
