@@ -8,6 +8,7 @@ class Config(object):
     USERNAME = str(os.environ.get("DB_USERNAME"))
     PASSWORD = str(os.environ.get("DB_PASSWORD"))
 
+#tambah JWT KEY
     JWT_SECRET_KEY = str(os.environ.get("JWT_SECRET"))
 
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + USERNAME + ':' + PASSWORD + '@' + HOST + '/' + DATABASE

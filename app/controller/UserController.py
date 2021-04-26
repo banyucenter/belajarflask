@@ -3,6 +3,7 @@ from app.model.user import User
 from app import response, app, db
 from flask import request
 
+#tambah flask jwt
 from flask_jwt_extended import *
 import datetime
 
@@ -22,15 +23,18 @@ import datetime
 #     except Exception as e:
 #         print(e)
 
+#fungsi single
 def singleObject(data):
     data = {
         'id' : data.id,
         'name' : data.name,
-        'email' : data.email
+        'email' : data.email,
+        'level' : data.level
     }
 
     return data
 
+#fungsi login
 def login():
     try:
         email = request.form.get('email')
