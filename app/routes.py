@@ -3,18 +3,21 @@ from app.controller import DosenController
 from app.controller import UserController
 from flask import request
 from flask import jsonify
-
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+
 
 @app.route('/')
 def index():
     return 'Hello Flask App'
 
+@app.route('/file-upload', methods=['POST'])
+def upload():
+    return UserController.upload()
+
 @app.route("/protected", methods=["GET"])
 @jwt_required
 def protected():
-    # Access the identity of the current user with get_jwt_identity
     current_user = get_jwt_identity()
     return response.success(current_user, 'Sukses')
 
