@@ -1,49 +1,53 @@
 from app.model.user import User
-
-from app.model.galeri import Galeri
+from app.model.gambar import Gambar
 from flask import request
 import os
 from app import response, app, db, uploadconfig
-from werkzeug.utils import secure_filename
 import uuid
+from werkzeug.utils import secure_filename
+
 
 from datetime import datetime
 from flask_jwt_extended import *
 
 
+
 def upload():
     try:
         judul = request.form.get('judul')
-        # check if the post request has the file part
+
         if 'file' not in request.files:
-            return response.badRequest([], 'File tidak tersedia!')
+            return response.badRequest([],'File tidak tersedia')
+
         file = request.files['file']
+
         if file.filename == '':
-            return response.badRequest([], 'File tidak dipilih!')
+            return response.badRequest([],'File tidak tersedia')
         if file and uploadconfig.allowed_file(file.filename):
             uid = uuid.uuid4()
             filename = secure_filename(file.filename)
-            renamefile = "FlaskImage-"+str(uid)+filename
+            renamefile = "Flask-"+str(uid)+filename
 
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], renamefile))
-            
-            uploads = Galeri(judul=judul, pathname=renamefile)
+
+            uploads = Gambar(judul=judul, pathname=renamefile)
             db.session.add(uploads)
             db.session.commit()
-
 
             return response.success(
                 {
                     'judul': judul,
-                    'pathname' : renamefile,
-            }, 
-            "Sukses Menyimpan Data!")
-            
+                    'pathname': renamefile
+                }, 
+                "Sukses mengupload file"
+            )
         else:
-            return response.badRequest([], 'Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+            return response.badRequest([],'File tidak diizinkan')
+
+
     except Exception as e:
         print(e)
-        
+
 
 def buatAdmin():
     try:

@@ -1,4 +1,6 @@
 from app import db
+import json
+
 
 class Dosen(db.Model):
     id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
@@ -9,3 +11,5 @@ class Dosen(db.Model):
 
     def __repr__(self):
         return '<Dosen {}>'.format(self.name)
+    
+    

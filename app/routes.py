@@ -11,9 +11,10 @@ from flask_jwt_extended import jwt_required
 def index():
     return 'Hello Flask App'
 
-@app.route('/file-upload', methods=['POST'])
-def upload():
-    return UserController.upload()
+#buat route paginasi data dosen
+@app.route('/api/dosen/page')
+def paginations():
+    return DosenController.paginate()
 
 @app.route("/protected", methods=["GET"])
 @jwt_required
@@ -22,12 +23,18 @@ def protected():
     return response.success(current_user, 'Sukses')
 
 @app.route('/dosen', methods=['GET', 'POST'])
-@jwt_required
+# @jwt_required
 def dosens():
     if request.method == 'GET':
         return DosenController.index()
     else:
         return DosenController.save()
+
+
+@app.route('/file-upload', methods=['POST'])
+def uploads():
+    return UserController.upload()
+
 
 # @app.route('/createadmin', methods=['POST'])
 # def admins():
